@@ -23,19 +23,20 @@ jobs:
         choco upgrade perl -y
         choco install python -y
         choco upgrade python -y
-        choco install mingw -y
-        choco upgrade mingw -y
+        choco install mingw --version=11.2.0 -y
+        choco upgrade mingw --version=11.2.0 -y
         choco install llvm -y
         choco upgrade llvm -y
         refreshenv
-    - name: Step 2 - Checking deps
+    - name: Step 2 - Checking deps version
       run: |
-        choco --version
-        git --version
-        cmake --version
-        ninja --version
-        perl --version
-        python --version
+        echo "Choco: $(choco --version)"
+        echo "Git: $(git --version)"
+        echo "Cmake: $(cmake --version)"
+        echo "Ninja: $(ninja --version)"
+        echo "Perl: $(perl --version)"
+        echo "Python: $(python --version)"
+        echo "Mingw; $(gcc --version)"
     - name: Step 3 - Cloning Git
       run: git clone git://code.qt.io/qt/qt5.git qt6
     - name: Step 4 - Configuring Git
