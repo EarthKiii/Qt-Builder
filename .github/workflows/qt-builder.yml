@@ -13,37 +13,38 @@ jobs:
     - name: Step 1 - Installing deps
       run: |
         choco upgrade chocolatey -y
-        choco --version
         choco install git -y
         choco upgrade git -y
-        git --version
         choco install cmake -y
         choco upgrade cmake -y
-        cmake --version
         choco install ninja -y
         choco upgrade ninja -y
-        ninja --version
         choco install perl -y
         choco upgrade perl -y
-        perl --version
         choco install python -y
         choco upgrade python -y
-        python --version
         choco install mingw -y
         choco upgrade mingw -y
-        mingw --version
         choco install llvm -y
         choco upgrade llvm -y
         refreshenv
-    - name: Step 2 - Cloning Git
+    - name: Step 2 - Checking deps
+      run: |
+        choco --version
+        git --version
+        cmake --version
+        ninja --version
+        perl --version
+        python --version
+    - name: Step 3 - Cloning Git
       run: git clone git://code.qt.io/qt/qt5.git qt6
-    - name: Step 3 - Configuring Git
+    - name: Step 4 - Configuring Git
       run: git checkout v6.5.0
       working-directory: qt6
-    - name: Step 4 - Fetching sub-modules
+    - name: Step 5 - Fetching sub-modules
       run: perl init-repository --module-subset=essential
       working-directory: qt6
-    - name: Step 5 - Building Qt6.5.0
+    - name: Step 6 - Building Qt6.5.0
       run: | 
         mkdir qt6-build
         cd qt6-build
