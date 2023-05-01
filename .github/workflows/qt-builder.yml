@@ -1,0 +1,36 @@
+name: Qt-Builder
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Building-Qt:
+    runs-on: windows-latest
+    steps:
+    - name: Step 1 - Installing deps
+      run: |
+        choco install git
+        choco install cmake
+        choco install ninja
+        choco install perl
+        choco install python
+        choco install mingw
+        choco install llvm
+    - name: Step 2 - Cloning Git
+      run: git clone git://code.qt.io/qt/qt5.git qt6
+    - name: Step 3 - Configuring Git
+      run: git checkout v6.5.0
+      working-directory: qt6
+    - name: Step 4 - Fetching sub-modules
+      run: perl init-repository --module-subset=essential
+      working-directory: qt6
+    - name: Step 5 - Building Qt6.5.0
+      run: | 
+        mkdir qt6-build
+        cd qt6-build
+        ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.0
+        cmake --build .
+        cmake --install .
