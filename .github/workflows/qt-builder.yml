@@ -40,15 +40,15 @@ jobs:
     - name: Step 3 - Cloning Git
       run: git clone git://code.qt.io/qt/qt5.git qt6
     - name: Step 4 - Configuring Git
-      run: git checkout v6.5.0
+      run: git switch 6.5.1
       working-directory: qt6
     - name: Step 5 - Fetching sub-modules
       run: perl init-repository --module-subset=essential
       working-directory: qt6
-    - name: Step 6 - Building Qt6.5.0
+    - name: Step 6 - Building Qt6.5.1
       run: | 
         mkdir qt6-build
         cd qt6-build
-        ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.0
+        ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.1
         cmake --build .
         cmake --install .
