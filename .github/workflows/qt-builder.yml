@@ -23,8 +23,8 @@ jobs:
         choco upgrade perl -y
         choco install python -y
         choco upgrade python -y
-        choco install mingw --version=11.2.0 -y
-        choco upgrade mingw --version=11.2.0 -y
+        choco install mingw --version=11.2.0 -y --allow-downgrade
+        choco upgrade mingw --version=11.2.0 -y --allow-downgrade
         choco install llvm -y
         choco upgrade llvm -y
         refreshenv
