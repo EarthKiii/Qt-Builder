@@ -15,8 +15,8 @@ jobs:
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
-        choco install perl -y
-        choco upgrade perl -y
+        choco install strawberryperl -y
+        choco upgrade strawberryperl -y
         choco install mingw --version=11.2.0 -y --allow-downgrade
         choco upgrade mingw --version=11.2.0 -y --allow-downgrade
         choco install llvm -y
