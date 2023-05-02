@@ -49,7 +49,7 @@ jobs:
       run: | 
         mkdir qt6-build
         cd qt6-build
-        tree 
+        tree ${{ github.workspace }}\qt6\bin
         ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.1
         cmake --build .
         cmake --install .
