@@ -15,18 +15,18 @@ jobs:
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
-        choco install cmake -y
-        choco upgrade cmake -y
-        choco install ninja -y
-        choco upgrade ninja -y
         choco install perl -y
         choco upgrade perl -y
-        choco install python -y
-        choco upgrade python -y
         choco install mingw --version=11.2.0 -y --allow-downgrade
         choco upgrade mingw --version=11.2.0 -y --allow-downgrade
         choco install llvm -y
         choco upgrade llvm -y
+        choco install cmake -y
+        choco upgrade cmake -y
+        choco install ninja -y
+        choco upgrade ninja -y
+        choco install python -y
+        choco upgrade python -y
         refreshenv
     - name: Step 2 - Checking deps version
       run: |
@@ -49,6 +49,7 @@ jobs:
       run: | 
         mkdir qt6-build
         cd qt6-build
+        tree 
         ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.1
         cmake --build .
         cmake --install .
