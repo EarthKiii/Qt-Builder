@@ -28,10 +28,10 @@ jobs:
         choco install python -y
         choco upgrade python -y
         refreshenv
-        echo "%Path%"
       shell: cmd
     - name: Step 2 - Checking deps version
       run: |
+        echo %Path%
         echo "Choco: $(choco --version)"
         echo "Git: $(git --version)"
         echo "Cmake: $(cmake --version)"
