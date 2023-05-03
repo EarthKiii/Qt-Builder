@@ -14,6 +14,7 @@ jobs:
       run: |
         [Environment]::SetEnvironmentVariable("Path", $env:Path + "C:\ProgramData\Chocolatey\bin", "Machine")
         refreshenv
+        echo "Path: $env:Path"
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
@@ -32,7 +33,7 @@ jobs:
         refreshenv
     - name: Step 2 - Checking deps version
       run: |
-        echo $env:Path
+        echo "Path: $env:Path"
         echo "Choco: $(choco --version)"
         echo "Git: $(git --version)"
         echo "Cmake: $(cmake --version)"
