@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Step 1 - Installing deps
       run: |
-        setx %Path% "C:\ProgramData\Chocolatey\bin"
+        [Environment]::SetEnvironmentVariable("Path", $env:Path + "C:\ProgramData\Chocolatey\bin", "Machine")
+        refreshenv
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
@@ -29,10 +30,9 @@ jobs:
         choco install python -y
         choco upgrade python -y
         refreshenv
-      shell: cmd
     - name: Step 2 - Checking deps version
       run: |
-        echo %Path%
+        echo $env:Path
         echo "Choco: $(choco --version)"
         echo "Git: $(git --version)"
         echo "Cmake: $(cmake --version)"
@@ -40,17 +40,13 @@ jobs:
         echo "Perl: $(perl --version)"
         echo "Python: $(python --version)"
         echo "Mingw; $(gcc --version)"
-      shell: cmd
     - name: Step 3 - Cloning Git
       run: git clone git://code.qt.io/qt/qt5.git qt6
-      shell: cmd
     - name: Step 4 - Configuring Git
       run: git switch 6.5.1
-      shell: cmd
       working-directory: qt6
     - name: Step 5 - Fetching sub-modules
       run: perl init-repository --module-subset=essential
-      shell: cmd
       working-directory: qt6
     - name: Step 6 - Building Qt6.5.1
       run: | 
@@ -60,4 +56,3 @@ jobs:
         ..\qt6\configure.bat -prefix ${{ github.workspace }}\Qt6.5.1
         cmake --build .
         cmake --install .
-      shell: cmd
