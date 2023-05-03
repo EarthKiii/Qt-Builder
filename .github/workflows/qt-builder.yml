@@ -12,6 +12,7 @@ jobs:
     steps:
     - name: Step 1 - Installing deps
       run: |
+        setx %Path% "C:\ProgramData\Chocolatey\bin"
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
