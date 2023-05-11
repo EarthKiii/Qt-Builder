@@ -16,18 +16,32 @@ jobs:
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
+        echo "C:\ProgramData\chocolatey\lib\git\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\git" >> $GITHUB_PATH
         choco install strawberryperl -y
         choco upgrade strawberryperl -y
+        echo "C:\ProgramData\chocolatey\lib\strawberryperl\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\strawberryperl" >> $GITHUB_PATH
         choco install mingw --version=11.2.0 -y --allow-downgrade
         choco upgrade mingw --version=11.2.0 -y --allow-downgrade
+        echo "C:\ProgramData\chocolatey\lib\mingw\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\mingw" >> $GITHUB_PATH
         choco install llvm -y
         choco upgrade llvm -y
+        echo "C:\ProgramData\chocolatey\lib\llvm\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\llvm" >> $GITHUB_PATH
         choco install cmake -y
         choco upgrade cmake -y
+        echo "C:\ProgramData\chocolatey\lib\cmake\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\cmake" >> $GITHUB_PATH
         choco install ninja -y
         choco upgrade ninja -y
+        echo "C:\ProgramData\chocolatey\lib\ninja\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\ninja" >> $GITHUB_PATH
         choco install python -y
         choco upgrade python -y
+        echo "C:\ProgramData\chocolatey\lib\python\tools" >> $GITHUB_PATH
+        echo "C:\ProgramData\chocolatey\lib\python" >> $GITHUB_PATH
         refreshenv
     - name: Step 2 - Checking deps version
       run: |
