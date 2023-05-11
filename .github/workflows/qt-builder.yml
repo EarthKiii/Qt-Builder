@@ -12,9 +12,7 @@ jobs:
     steps:
     - name: Step 1 - Installing deps
       run: |
-        [Environment]::SetEnvironmentVariable("Path", $env:Path + "C:\ProgramData\Chocolatey\bin", "Machine")
-        refreshenv
-        echo "Path: $env:Path"
+        echo "C:\ProgramData\Chocolatey\bin" >> $GITHUB_PATH
         choco upgrade chocolatey -y
         choco install git -y
         choco upgrade git -y
